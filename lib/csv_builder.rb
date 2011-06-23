@@ -3,15 +3,17 @@
 module CsvBuilder
   if RUBY_VERSION.to_f >= 1.9
     require 'csv'
-    CSV_LIB = CSV
+    CSV = ::CSV
   else
     require 'fastercsv'
-    CSV_LIB = FasterCSV
+    CSV = ::FasterCSV
   end
 end
 
 require 'action_view'
 require 'iconv'
-require 'csv_builder/transliterating_filter'
+require 'csv_builder/proxy'
+require 'csv_builder/filter_proxy'
+require 'csv_builder/csv_proxy'
 require 'csv_builder/template_handler'
 require 'csv_builder/railtie'
