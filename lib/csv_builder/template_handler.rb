@@ -34,21 +34,6 @@ module CsvBuilder # :nodoc:
             #{template.source}
           end
 
-          unless defined?(ActionMailer) && defined?(ActionMailer::Base) && controller.is_a?(ActionMailer::Base)
-            @filename ||= "\#{controller.action_name}.csv"
-            if controller.request.env['HTTP_USER_AGENT'] =~ /msie/i
-              controller.response.headers['Pragma'] = 'public'
-              controller.response.headers["Content-type"] = "text/plain"
-              controller.response.headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
-              controller.response.headers['Content-Disposition'] = "attachment; filename=\#{@filename}"
-              controller.response.headers['Expires'] = "0"
-            else
-              controller.response.headers["Content-Type"] ||= 'text/csv'
-              controller.response.headers["Content-Disposition"] = "attachment; filename=\#{@filename}"
-              controller.response.headers["Content-Transfer-Encoding"] = "binary"
-            end
-          end
-
           output
         rescue Exception => e
           Rails.logger.warn("Exception \#{e} \#{e.message} with class \#{e.class.name} thrown when rendering CSV")
@@ -58,3 +43,19 @@ module CsvBuilder # :nodoc:
       end
     end
 end
+=begin
+unless defined?(ActionMailer) && defined?(ActionMailer::Base) && controller.is_a?(ActionMailer::Base)
+  @filename ||= "\#{controller.action_name}.csv"
+  if controller.request.env['HTTP_USER_AGENT'] =~ /msie/i
+    controller.response.headers['Pragma'] = 'public'
+    controller.response.headers["Content-type"] = "text/plain"
+    controller.response.headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
+    controller.response.headers['Content-Disposition'] = "attachment; filename=\#{@filename}"
+    controller.response.headers['Expires'] = "0"
+  else
+    controller.response.headers["Content-Type"] ||= 'text/csv'
+    controller.response.headers["Content-Disposition"] = "attachment; filename=\#{@filename}"
+    controller.response.headers["Content-Transfer-Encoding"] = "binary"
+  end
+end
+=end
