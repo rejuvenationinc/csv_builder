@@ -4,10 +4,13 @@ module CsvBuilder
   class CsvProxy < FilterProxy
 
     def initialize(data, options = {})
-      init(CSV.new(data, options), data) do
+      super(data, options).tap do
 
-        @ivar_names = base.instance_variables.select do |ivar|
-          CSV::DEFAULT_OPTIONS.keys.map { |key| "@#{key}" }.include?(ivar.to_s)
+        init(CSV.new(data, @options), data) do
+
+          @ivar_names = base.instance_variables.select do |ivar|
+            CSV::DEFAULT_OPTIONS.keys.map { |key| "@#{key}" }.include?(ivar.to_s)
+          end
         end
 
       end

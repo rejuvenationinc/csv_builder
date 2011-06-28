@@ -1,9 +1,10 @@
-#encoding: utf-8
+# encoding: utf-8
 
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 class CsvBuilderReportsController < ApplicationController
   before_filter {|c| c.prepend_view_path(File.expand_path(File.dirname(__FILE__) + '/../templates')) }
+  before_filter { @csv_builder ||= {} }
 
   def simple
     # dummy
@@ -16,8 +17,8 @@ class CsvBuilderReportsController < ApplicationController
   def complex
     respond_to do |format|
       format.csv do
-        @filename = 'some_complex_filename.csv'
-        @csv_options = { :col_sep => "\t" }
+        @csv_filename = 'some_complex_filename.csv'
+        @csv_builder[:col_sep] = "\t"
         @data = TEST_DATA
       end
     end
@@ -25,7 +26,7 @@ class CsvBuilderReportsController < ApplicationController
 
   def encoding
     respond_to do |format|
-      format.csv { @output_encoding = 'UTF-16' }
+      format.csv { @csv_builder[:output_encoding] = 'UTF-16' }
     end
   end
 
@@ -62,7 +63,7 @@ describe CsvBuilderReportsController do
 
     it "sets filename" do
       get 'complex', :format => 'csv'
-      response.headers['Content-Disposition'].should match(/filename=some_complex_filename.csv/)
+      response.headers['Content-Disposition'].should match(/filename="some_complex_filename.csv"/)
     end
   end
 end
