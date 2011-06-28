@@ -30,7 +30,7 @@ class CsvBuilderReportsController < ApplicationController
   end
 
 end
-ActionController::Routing::Routes.draw { |map| map.connect ':controller/:action' }
+Rails.application.routes.draw { match ':controller/:action' }
 
 
 describe CsvBuilderReportsController do

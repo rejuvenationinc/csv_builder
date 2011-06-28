@@ -14,7 +14,7 @@ TEST_DATA = [
 ]
 
 def generate(options = {}, data = TEST_DATA)
-  CsvBuilder::CSV_LIB.generate(options) do |csv|
+  CsvBuilder::CSV.generate(options) do |csv|
     data.each do |row|
       csv << row
     end
