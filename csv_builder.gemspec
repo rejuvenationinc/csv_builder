@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.name          = "potatosalad-csv_builder"
   gem.require_paths = ['lib']
   gem.version       = CsvBuilder::VERSION
-  gem.requirements  = [%q{iconv}, %q{Ruby 1.9.x or FasterCSV}]
+  gem.requirements  = [%q{Ruby 1.9.x or FasterCSV}]
 
   gem.add_dependency "rails", ">= 3.0.0"
 end

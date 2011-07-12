@@ -11,7 +11,6 @@ module CsvBuilder
 end
 
 require 'action_view'
-require 'iconv'
 require 'csv_builder/proxy'
 require 'csv_builder/filter_proxy'
 require 'csv_builder/csv_proxy'

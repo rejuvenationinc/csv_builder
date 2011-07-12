@@ -52,8 +52,7 @@ describe CsvBuilderReportsController do
   describe "Layout with options" do
     it "sets output encoding correctly" do
       get 'encoding', :format => 'csv'
-      correct_output = generate({}, [Iconv.iconv('UTF-16//TRANSLIT//IGNORE', 'UTF-8', 'ąčęėįšųūž')])
-      response.body.to_s.should == correct_output
+      response.body.to_s.should == generate({ :output_encoding => 'UTF-8' }, ['ąčęėįšųūž'])
     end
 
     it "passes csv options" do

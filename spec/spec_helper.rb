@@ -14,9 +14,11 @@ TEST_DATA = [
 ]
 
 def generate(options = {}, data = TEST_DATA)
-  CsvBuilder::CSV.generate(options) do |csv|
-    data.each do |row|
-      csv << row
-    end
+  output = String.new
+  output.force_encoding(options[:output_encoding] || CsvBuilder::DEFAULT_OUTPUT_ENCODING)
+  csv = CsvBuilder::CsvProxy.new(output, options)
+  data.each do |row|
+    csv << row
   end
+  output
 end
