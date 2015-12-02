@@ -44,7 +44,7 @@ Add rows to your CSV file in the template by pushing arrays of columns into the 
      csv << [ 'another cell value', 'and another' ]
      # etc...
 
-You can set the default filename for that a browser will use for 'save as' by setting `@filename` instance variable in
+You can set the default filename for that a browser will use for 'save as' by setting `@csv_filename` instance variable in
 your controller's action method e.g.
 
     @csv_filename = 'report.csv'
