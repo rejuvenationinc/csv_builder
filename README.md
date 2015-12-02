@@ -47,14 +47,14 @@ Add rows to your CSV file in the template by pushing arrays of columns into the 
 You can set the default filename for that a browser will use for 'save as' by setting `@filename` instance variable in
 your controller's action method e.g.
 
-    @filename = 'report.csv'
+    @csv_filename = 'report.csv'
 
 You can set the input encoding and output encoding by setting `@input_encoding` and `@output_encoding` instance
 variables.  These default to 'UTF-8' and 'LATIN1' respectively. e.g.
 
     @output_encoding = 'UTF-8'
 
-You can set `@csv_options` instance variable to define options for FasterCSV generator. For example: 
+You can set `@csv_options` instance variable to define options for FasterCSV generator. For example:
 
     @csv_options = { :force_quotes => true, :col_sep => ';' }
 
@@ -63,7 +63,7 @@ You can respond with csv in your controller as well:
     respond_to do |format|
       format.html
       format.csv # make sure you have action_name.csv.csvbuilder template in place
-    end 
+    end
 
 You can also attach a csv file to mail sent out by your application by
 including a snippet like the following in your mailer method

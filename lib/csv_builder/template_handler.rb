@@ -16,7 +16,7 @@ module CsvBuilder # :nodoc:
   # setting <tt>@filename</tt> instance variable in your controller's action method
   # e.g.
   #
-  #   @filename = 'report.csv'
+  #   @csv_filename = 'report.csv'
   #
   # You can also set the input encoding and output encoding by setting
   # <tt>@input_encoding</tt> and <tt>@output_encoding</tt> instance variables.
