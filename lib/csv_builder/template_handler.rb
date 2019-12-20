@@ -25,7 +25,7 @@ module CsvBuilder # :nodoc:
   #   @output_encoding = 'UTF-8'
   class TemplateHandler
     class_attribute :default_format
-    self.default_format = Mime::CSV
+    self.default_format = Mime[:csv]
 
     def call(template)
       <<-EOV
